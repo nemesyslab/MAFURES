@@ -10,8 +10,11 @@ Sample inputs and outputs are added.
 
 
 FPU module and other pipelined custom modules that will be used in flow should be introduced to tool. This introduction should include name of operation, name of different modes, its latency, module name, inputs/output port names and parameter settings in the module declarations file.
+
 Here is the sample decleration;
+
 //////////////////////////////////////////////////////
+
 Function Name = add:0,sub:1;                           // function names used in the data flow with operation number* 
 Latency = 16;                                          // latency of used module
 Module Name = iter_v2_faddfsub_32ns_32ns_32_14_no_dsp; // module name of fuction 
@@ -30,6 +33,7 @@ Port Names =                                           // port names declared he
     .ce( 1'b1 ),                              
     .dout( output: );
 //////////////////////////////////////////////////////
+
 *some modules can be used as different functions (such as adder and subtructer) with different operation code, this situation supported by our tool.
 **at this version all ports declared 32 bit by default except clock and reset signals
 
