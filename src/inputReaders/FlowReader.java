@@ -1,4 +1,4 @@
-package aeg.inputReaders;
+package inputReaders;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
