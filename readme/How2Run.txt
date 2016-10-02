@@ -1,7 +1,14 @@
+main method is in aeg/main/executer.java
+run it with the input of your "project_name".
+Before run the code prepare your input files
+Then output can will be created
 
-Java build path : JRE System Library  [JavaSE-1.8]
 
-Import source files into your Java project. Codes read input data from data folder and write out files into outputs folder.
-main method is in aeg/main/executer.java .
+List of input files you should prepare
+- inputs/"project_name".ml                           // check readme/files.txt for how to write .ml
+- inputs/"project_name".maf or "project_name".mc     // check readme/files.txt for how to write .mc and .maf
+
+
+Java build path that I used : JRE System Library  [JavaSE-1.8]
 
 Sample inputs and outputs are added.
