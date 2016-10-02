@@ -41,21 +41,23 @@ m = 588;
 cons0 = 32'h3e4ccccd;
 cons1 = 32'h3f000000;
 
-a374 = mult( a374 , cons0 );
+a374 = mult( inputS , cons0 );
 if(ii == m) {
-  a374 = mult( a374 , cons1 );
+  a374 = mult( C_input , cons1 );
 }
 
-c080 = lt( a374 , cons0 );
+c080 = lt( inputK , cons0 );
 
-as335 = sub( s058 , m283 );
+as335 = sub( inputW , m283 );
 if (c080) {
-	as335 = add( s058 , cons3 );
+	as335 = add( asd , cons3 );
 }
 
 u_Out = a374;
 v_Out = as335;
 ///////////////////////////////////////////////////////////////////////////
+Above code sample represents an example of operation flow feeding way of our tool. Initiation interval should be declared at the first line. Introduced modules (declared in the module decleration file) can be used with their function names. Undefined names, such as 'inputS', 'C_input' or 'asd' interpreted as an input port of target module. Numbers like "32'h3E4CCCCD" be saved as parameter and will be described as local parameter in RTL code. Branches can be written as if statements. Variable names that include “out” interpreted as output automatically and wired outputs of Verilog module.
 
-Above code sample represents operation flow feeding way of our tool. Introduced modules can be used with their function name. 'a', 'b' and 'e' keywords interpreted as an input port of target module. Numbers like "32'h3E4CCCCD" be saved as parameter and will be described as local parameter in RTL code. Branches can be written as if statements. Variable names that include “out” interpreted as output automatically and wired outputs of Verilog module. There are two modes about discard times of outputs. First mode gives you data ready signal for each signal and don’t register them. In second output mode, outputs saved in registers until last output produced and sets only one data ready signal for all outputs.
+
+
 
