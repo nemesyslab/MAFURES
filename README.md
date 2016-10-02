@@ -43,20 +43,34 @@ cons1 = 32'h3f000000;
 
 a374 = mult( inputS , cons0 );
 if(ii == m) {
-  a374 = mult( C_input , cons1 );
+	a374 = mult( C_input , cons1 );
 }
 
 c080 = lt( inputK , cons0 );
 
 as335 = sub( inputW , m283 );
 if (c080) {
-	as335 = add( asd , cons3 );
+	as335 = add( asd , cons1 );
 }
+if (c080 || jj == m) {
+	as335 = sub( asd , cons3 );
+}
+
 
 u_Out = a374;
 v_Out = as335;
 ///////////////////////////////////////////////////////////////////////////
-Above code sample represents an example of operation flow feeding way of our tool. Initiation interval should be declared at the first line. Introduced modules (declared in the module decleration file) can be used with their function names. Undefined names, such as 'inputS', 'C_input' or 'asd' interpreted as an input port of target module. Numbers like "32'h3E4CCCCD" be saved as parameter and will be described as local parameter in RTL code. Branches can be written as if statements. Variable names that include “out” interpreted as output automatically and wired outputs of Verilog module.
+Above code sample represents an example of operation flow feeding way of our tool. Initiation interval should be declared at the first line. Introduced modules (declared in the module decleration file) can be used with their function names. Undefined names, such as 'inputS', 'C_input' or 'asd' interpreted as an input port of target module. Numbers like "32'h3E4CCCCD" be saved as parameter and will be described as local parameter in RTL code. Branches can be written as if statements. Variable names that include “_Out” (like "u_Out" or "v_Out") interpreted as output automatically and wired outputs of Verilog module.
+
+
+Output Behaviours
+Functional Module
+When you run the code with valid inputs, program generate two output files whice are functional Verilog module and a report file about implementation. The module is ready to instantiate into your design. Connecting inputs and output ports is enough.All inputs should be fed at cycle zero (you can start to count after reset). Outputs will be ready after calculated latency whice can be found into the report file and you must collect them at that cycle.
+Report File
+Report file includes;
+	- utilization of functional units
+	- folded schedule table of functional units
+	- folded schedule table of registers
 
 
 
