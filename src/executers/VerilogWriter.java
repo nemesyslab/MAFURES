@@ -299,13 +299,13 @@ public class VerilogWriter {
 				if (caseNumber == unit.getResultLatency() % data.II) {
 					if (unit.getDiscardCycle() - unit.getResultLatency() > 0) {
 						indentedPrint("// " + unit.getName());
-						// TODO output sayısına göre basılmalı
+						// TODO output sayÃ½sÃ½na gÃ¶re basÃ½lmalÃ½
 						indentedPrint("reg" + padZero(unit.registerLocArray[0]) + "Next = "
 								+ unit.module.getOutputName(unit.getModuleNum()) + ";");
-						// TODO regLocArr üzerinden yapılacak
-						// TODO 0 kaldırılacak
-						// TODO outputun registere veya inputa gireceğini unit
-						// classı bilmeli
+						// TODO regLocArr Ã¼zerinden yapÃ½lacak
+						// TODO 0 kaldÃ½rÃ½lacak
+						// TODO outputun registere veya inputa gireceÃ°ini unit
+						// classÃ½ bilmeli
 					}
 				}
 			}
@@ -326,7 +326,7 @@ public class VerilogWriter {
 									+ "reg" + padZero(temp) + ";");
 						}
 						// TODO buradan unit latency + i ile bir kontrol
-						// yapılabilir
+						// yapÃ½labilir
 						temp = unit.registerLocArray[i];
 					}
 				}
