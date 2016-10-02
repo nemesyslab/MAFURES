@@ -1,4 +1,4 @@
-package aeg.dataTypes;
+package dataTypes;
 
 public class Condition {
 	public FlowElement[] ais;
