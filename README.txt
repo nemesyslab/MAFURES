@@ -76,6 +76,7 @@ Report file includes;
 	- folded schedule table of functional units
 	- folded schedule table of registers
 
+Contact email (any question and bug report): aydin.guzel@ozu.edu.tr
 
 
 
