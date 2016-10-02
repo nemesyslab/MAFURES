@@ -1,1 +1,7 @@
 
+Java build path : JRE System Library  [JavaSE-1.8]
+
+Import source files into your Java project. Codes read input data from data folder and write out files into outputs folder.
+main method is in aeg/main/executer.java .
+
+Sample inputs and outputs are added.
