@@ -1,4 +1,4 @@
-package aeg.inputReaders;
+package inputReaders;
 
 public class IdentifiedModule {
 	int opNum;
