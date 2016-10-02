@@ -1,0 +1,184 @@
+initiation interval : 10
+m = 588;
+n = 384;
+carpan1 = 32'h3f000000;
+carpan2 = 32'h3f000000;
+cons0 = 32'h3e4ccccd;
+cons5 = 32'h3f000000;
+TAU = 32'h3ecccccd;
+BETA = 32'h3dcccccd;
+ZERO = 0;
+ONE = 32'h3F800000;
+TWO = 32'h40000000;
+MINUSONE = 32'hBF800000;
+
+s000 = sub( u_S1 , u_S0 );
+s100 = sub( v_S1 , v_S0 );
+s200 = sub( w_S1 , w_S0 );
+m010 = mult( carpan1 , s000 );
+m110 = mult( carpan1 , s100 );
+m210 = mult( carpan2 , s200 );
+
+a062 = add( p0 , m010 );
+a161 = add( p2 , m110 );
+a261 = add( p4 , m210 );
+if (jj == n ) {
+	a062 = add( ZERO , ZERO );
+	a161 = add( ZERO , ZERO );
+	a261 = add( ZERO , ZERO );
+}
+
+s300 = sub( u_S2 , u_S0 );
+s400 = sub( v_S2 , v_S0 );
+s011 = sub( w_S2 , w_S0 );
+m310 = mult( carpan1 , s300 );
+m410 = mult( carpan1 , s400 );
+m021 = mult( carpan2 , s011 );
+
+a361 = add( p1 , m310 );
+a461 = add( p3 , m410 );
+a073 = add( p5 , m021 );
+if (ii == m ) {
+	a361 = add( ZERO , ZERO );
+	a461 = add( ZERO , ZERO );
+	a073 = add( ZERO , ZERO );
+}
+
+m072 = mult( a062 , a062 );
+m171 = mult( a161 , a161 );
+m271 = mult( a261 , a261 );
+m371 = mult( a361 , a361 );
+m471 = mult( a461 , a461 );
+m083 = mult( a073 , a073 );
+a024 = add( m171 , m072 );
+a122 = add( m471 , m371 );
+a133 = add( a024 , a122 );
+
+
+a035 = add( m271 , m083 );
+bool0 = lt( a035 , ONE );
+
+ct0 = sqrt(a035);
+if (bool0){
+	ct0 = sqrt(ONE);
+}
+
+bool1 = lt( a133 , ONE );
+ct1 = sqrt(a133);
+if (bool1){
+	ct1 = sqrt(ONE);
+}
+	
+
+d030 = div( a062 , ct1 );   
+d041 = div( a161 , ct1 );
+d052 = div( a261 , ct0 );
+d063 = div( a361 , ct1 );
+d074 = div( a461 , ct1 );
+d085 = div( a073 , ct0 );
+
+p0Out = d030;
+p2Out = d041;
+p4Out = d052;
+p1Out = d063;
+p3Out = d074;
+p5Out = d085;
+
+
+//u_S0 = uS;
+//v_S0 = vS;
+//w_S0 = wS;
+
+s171 = sub( p0Prev , d030 );
+s096 = sub( p2Prev , d041 );
+s115 = sub( p4Prev , d052 );
+//if(valid == 1) {
+//	p0Prev = d030;
+//	p2Prev = d041;
+//	p4Prev = d052;
+//}
+
+s087 = sub( p1S_1 , d063 );
+s212 = sub( p3S_1 , d074 );
+s223 = sub( p5S_1 , d085 );
+if (ii == 0 && jj != 0) {
+	s087 = sub( ZERO , d063 );
+	s212 = sub( ZERO , d074 );
+	s223 = sub( ZERO , d085 );
+}
+if (ii != 0 && jj == 0) {
+	s171 = sub( ZERO , d030 );
+	s096 = sub( ZERO , d041 );
+	s115 = sub( ZERO , d052 );
+}
+
+a196 = add( s171 , s087 );
+a322 = add( s096 , s212 );
+a234 = add( s115 , s223 );
+m004 = mult( TAU , a196 );
+m035 = mult( TAU , a322 );
+m046 = mult( TAU , a234 );
+
+
+s058 = sub( uS , m004 );
+s187 = sub( vS , m035 );
+s295 = sub( wS , m046 );
+if (ii == 0 && jj == 0) {
+	s058 = sub( uS , ZERO );
+	s187 = sub( vS , ZERO );
+	s295 = sub( wS , ZERO );
+}
+
+s276 = sub( s058 , u0S );
+s393 = sub( s187 , v0S );
+m202 = mult( BETA , s295 );
+m182 = mult( s276 , I_xS );
+m103 = mult( s393 , I_yS );
+a158 = add( m103 , m182 );
+a257 = add( I_tS , m202 );
+a374 = add( a158 , a257 );
+
+cons1 = mult( cons0 , I_grad_sqrS );
+cons2 = mult( MINUSONE , cons1 );
+
+c080 = lt( a374 , cons2 );
+c091 = gt( a374 , cons1 );
+
+cons6 = div( I_xS , I_grad_sqrS );
+cons7 = div( I_yS , I_grad_sqrS );
+cons8 = div( beta , I_grad_sqrS );
+cons3 = mult( cons0 , I_xS );
+cons4 = mult( cons0 , I_yS );
+
+m283 = mult( a374 , cons6 );
+m382 = mult( a374 , cons7 );
+m482 = mult( a374 , cons8 );
+
+as335 = sub( s058 , m283 );
+as432 = sub( s187 , m382 );
+as049 = sub( s295 , m482 );
+if (c080) {
+	as335 = add( s058 , cons3 );
+	as432 = add( s187 , cons4 );
+	as049 = add( s295 , cons5 );
+} 
+if (c091) {
+	as335 = sub( s058 , cons3 );
+	as432 = sub( s187 , cons4 );
+	as049 = sub( s295 , cons5 );
+}
+
+m144 = mult( as335 , TWO );
+m244 = mult( as432 , TWO );
+m057 = mult( as049 , TWO );
+s316 = sub( m144 , uS );
+s413 = sub( m244 , vS );
+s424 = sub( m057 , wS );
+
+u_Out = s316;
+v_Out = s413;
+w_Out = s424;
+
+uOut = as335;
+vOut = as432;
+wOut = as049;
