@@ -9,7 +9,7 @@ main method is in aeg/main/executer.java .
 Sample inputs and outputs are added.
 
 
-FPU module and other pipelined custom modules that will be used in flow should be introduced to tool. This introduction should include name of operation, name of different modes, its latency, module name, inputs/output port names and parameter settings in the module declarations file.
+FPU modules and other pipelined custom modules that will be used in flow should be introduced to tool. This introduction should include name of operation, name of different modes, its latency, module name, inputs/output port names and parameter settings in the module declarations file.
 
 Here is the sample decleration;
 
