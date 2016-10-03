@@ -1,4 +1,4 @@
-package aeg.dataTypes;
+package dataTypes;
 
 public class NumberVar extends FlowElement {
 
